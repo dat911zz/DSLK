@@ -857,4 +857,43 @@ int timPTChanMinSList(SList l)
 	}
 	return min;
 }
+//================
 //Stack 
+Node* pushS(Stack& s, Node* p)
+{
+	if (p)
+	{
+		if (!s.top)
+		{
+			s.top = p;
+		}
+		else
+		{
+			p->next = s.top;
+			s.top = p;
+		}
+	}
+}
+
+Node* popS(Stack& s)
+{
+	Node* p = NULL;
+	if (s.top)
+	{
+		p = s.top;
+		s.top = s.top->next;
+		p->next = NULL;
+	}
+	return p;
+}
+
+void initStack(Stack& s)
+{
+	s.top = NULL;
+}
+
+bool isEmptyStack(Stack s)
+{
+	return s.top == NULL;
+}
+
