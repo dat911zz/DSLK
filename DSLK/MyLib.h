@@ -15,9 +15,10 @@ void SetWindowSize(SHORT width, SHORT height);
 void SetScreenBufferSize(SHORT width, SHORT height);
 void TestBGColor();
 void WindowsCustomize();
+void DisableResizeWindow();
 void ShowCur(bool CursorVisibility);
 void Ruler();
-int menu();
+//int menu();
 //==========
 
 void hide(const char* s, int* a)
@@ -121,11 +122,13 @@ int menu_02()
 		"14.Xuat cac vi tri pt chan/le",
 		"15.Dem phan tu X trong DSLK don",
 		"16.Tim phan tu Max/Min trong DSLK don",
-		"17.C",
-		"18.D",
-		"19.E", };
+		"17.Tim phan tu chan nho nhat DSLK",
+		"18.Nhap va Xuat Stack",
+		"19.Kiem tra top Stack",
+		"20.Them vao top Stack",
+		"21.Xoa top Stack"};
 	//-----------------Khu vuc chinh sua tuy chon-----------------//
-	int n = 19;	//So luong control
+	int n = 22;	//So luong control
 	int max_show = 14;	//So luong control trong 1 trang
 	int pick = 1;	//Bien chon : lua chon bat dau tai 1
 	int max_pick = max_show;	//So lua chon duoc hien thi tai trang hien hanh
@@ -668,10 +671,17 @@ void TestBGColor()
 	}
 }
 
+void DisableResizeWindow()
+{
+	HWND hWnd = GetConsoleWindow();
+	SetWindowLong(hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) & ~WS_SIZEBOX);
+}
+
 void WindowsCustomize()
 {
-	SetWindowSize(91, 40);
-	SetScreenBufferSize(91, 40);
+	DisableResizeWindow();
+	SetWindowSize(90, 37);
+	SetScreenBufferSize(90, 37);
 	SetConsoleTitle(L"Beta Program");
 	ShowCur(0);
 }
@@ -751,31 +761,31 @@ void loading()
 	XY(27, 3);
 	cout << "." << endl;
 }
-int menu()
-{
-	int* a = new int;
-	const char* s[100] = { "1. Nhap Xuat DSLK don",
-		"2. Tim node trong DSLK don",
-		"3. Them node vao dau DSLK don",
-		"4. Them node vao cuoi DSLK don",
-		"5. Them node p vao sau node q DSLK don",
-		"6. Xoa node dau DSLK don",
-		"7. Xoa node cuoi DSLK don",
-		"8. Xoa node sau node q DSLK don",
-		"9. Sap xep DSLK don tang theo gt InterchangeSort",
-		"10.Sap xep DSLK don giam theo gt InterchangeSort",
-		"11.So luong node trong DSLK don",
-		"12.Tinh Tong cac node",
-		"13.Xuat cac pt chan/le",
-		"14.Xuat cac vi tri pt chan/le" };
-	WindowsCustomize();
-	Ruler();
-	BGcolor(15);
-	table("1x1.4x1.30.82#1x1.20x10.15.50", a);
-	BGcolor(14);
-	XY(8, 30);
-	cout << "[ESC]:EXIT";
-	return control(14, 22, 12, s);
-	XY(1, 32);
-	delete a;
-}
+//int menu()
+//{
+//	int* a = new int;
+//	const char* s[100] = { "1. Nhap Xuat DSLK don",
+//		"2. Tim node trong DSLK don",
+//		"3. Them node vao dau DSLK don",
+//		"4. Them node vao cuoi DSLK don",
+//		"5. Them node p vao sau node q DSLK don",
+//		"6. Xoa node dau DSLK don",
+//		"7. Xoa node cuoi DSLK don",
+//		"8. Xoa node sau node q DSLK don",
+//		"9. Sap xep DSLK don tang theo gt InterchangeSort",
+//		"10.Sap xep DSLK don giam theo gt InterchangeSort",
+//		"11.So luong node trong DSLK don",
+//		"12.Tinh Tong cac node",
+//		"13.Xuat cac pt chan/le",
+//		"14.Xuat cac vi tri pt chan/le" };
+//	WindowsCustomize();
+//	Ruler();
+//	BGcolor(15);
+//	table("1x1.4x1.30.82#1x1.20x10.15.50", a);
+//	BGcolor(14);
+//	XY(8, 30);
+//	cout << "[ESC]:EXIT";
+//	return control(14, 22, 12, s);
+//	XY(1, 32);
+//	delete a;
+//}

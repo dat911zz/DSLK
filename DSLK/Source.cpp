@@ -61,6 +61,13 @@ int countXInSList(SList l, int x);
 int timPTMaxSList(SList l);
 int timPTMinSList(SList l);
 int timPTChanMinSList(SList l);
+//Stack
+void createStack_Random(Stack& s, int& n);
+void showStack(Stack& s);
+void _nhapXuatStack(Stack& s, int& n);
+void checkTopStack(Stack s);
+void _ThemVaoDinh(Stack& s);
+
 //=====================================
 //Main
 void main()
@@ -77,6 +84,7 @@ void thucHienChuongTrinh()
 	int a[100];
 	int chon, n, x;
 	SList l;
+	Stack s;
 	Node* q, * p;
 	srand((int)time(NULL));
 	do
@@ -221,6 +229,28 @@ void thucHienChuongTrinh()
 		case 17:
 			_nhapXuatDSLK(l, n);
 			cout << "\nPhan tu chan nho nhat trong DSLK: " << timPTChanMinSList(l);
+			break;
+		case 18:
+			_nhapXuatStack(s, n);
+			break;
+		case 19:
+			_nhapXuatStack(s, n);
+			cout << "Top of Stack: ";
+			checkTopStack(s);
+			break;
+		case 20:
+			char chon_1;
+			_nhapXuatStack(s, n);
+			do
+			{
+				_ThemVaoDinh(s);
+				showStack(s);
+				cout << "\nBan co muon them tiep ? Y/N - ";
+				cin >> chon_1;
+			} while (chon_1 == 'Y' || chon_1 == 'y');
+			
+			break;
+		case 21:
 			break;
 		default:
 			system("cls");
@@ -373,7 +403,6 @@ x: showSList(l);
 }
 void showSList(SList l)
 {
-	int i = 0;
 	Node* p;
 	p = l.head;
 	cout << "\n\n\t-Single List-" << endl;
@@ -873,6 +902,7 @@ Node* pushS(Stack& s, Node* p)
 			s.top = p;
 		}
 	}
+	return p;
 }
 
 Node* popS(Stack& s)
@@ -897,3 +927,82 @@ bool isEmptyStack(Stack s)
 	return s.top == NULL;
 }
 
+void createStack_Random(Stack& s,int &n)
+{
+	int x;
+	Node* q;
+	cout << "Nhap n: ";
+	cin >> n;
+	initStack(s);
+	for (int i = 0; i < n; i++)
+	{
+		x = rand() % 100;
+		q = createNode(x);
+		checkMemory(q);
+		if (isEmptyStack(s) == 1)
+		{
+			s.top = q;
+		}
+		else
+		{
+			pushS(s, q);
+		}
+	}
+}
+
+void showStack(Stack& s)
+{
+	Node* p = s.top;
+	cout << "\n\n\t-Stack-" << endl;
+	if (!p)
+	{
+		cout << "\t<Empty!>" << endl;
+	}
+	while (p)
+	{
+		if (p == s.top)
+		{
+			cout << "-> " << p->info << "|";
+		}
+		else
+		{
+			if (!p->next)
+			{
+				cout << p->info << "]";
+			}
+			else
+			{
+				cout << p->info << "|";
+			}
+		}
+		p = p->next;
+	}
+}
+
+void _nhapXuatStack(Stack& s, int &n)
+{
+	createStack_Random(s, n);
+	showStack(s);
+	cout << endl;
+}
+
+void checkTopStack(Stack s)
+{
+	if (isEmptyStack(s) == 1)
+	{
+		cout << "<Empty>";
+	}
+	else
+	{
+		cout << s.top->info;
+	}
+}
+
+void _ThemVaoDinh(Stack& s)
+{
+	int x;
+	Node* p;
+	nhapx(x);
+	p = createNode(x);
+	pushS(s, p);
+}
