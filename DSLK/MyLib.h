@@ -126,7 +126,7 @@ int menu_02()
 		"18.Tim phan tu le lon nhat DSLK",
 		"19.Tim phan tu chan lon nhat DSLK",
 		"20.Tim phan tu le nho nhat DSLK",
-		"21.",
+		"21.Xoa phan tu max DSLK",
 		"22.",
 		"23.",
 		"24.",
