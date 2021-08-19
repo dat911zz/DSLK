@@ -123,12 +123,19 @@ int menu_02()
 		"15.Dem phan tu X trong DSLK don",
 		"16.Tim phan tu Max/Min trong DSLK don",
 		"17.Tim phan tu chan nho nhat DSLK",
-		"18.Nhap va Xuat Stack",
-		"19.Kiem tra top Stack",
-		"20.Them vao top Stack",
-		"21.Xoa top Stack"};
+		"18.Tim phan tu le lon nhat DSLK",
+		"19.Tim phan tu chan lon nhat DSLK",
+		"20.Tim phan tu le nho nhat DSLK",
+		"21.",
+		"22.",
+		"23.",
+		"24.",
+		"25.Nhap Xuat Stack",
+		"26.Kiem tra top Stack",
+		"27.Them node top Stack" };
+	
 	//-----------------Khu vuc chinh sua tuy chon-----------------//
-	int n = 22;	//So luong control
+	int n = 27;	//So luong control
 	int max_show = 14;	//So luong control trong 1 trang
 	int pick = 1;	//Bien chon : lua chon bat dau tai 1
 	int max_pick = max_show;	//So lua chon duoc hien thi tai trang hien hanh

@@ -60,7 +60,12 @@ void _XuatCacPTVTChan_Le(SList l);
 int countXInSList(SList l, int x);
 int timPTMaxSList(SList l);
 int timPTMinSList(SList l);
+int isEmptyEvenSList(SList l);
+int isEmptyOddSList(SList l);
 int timPTChanMinSList(SList l);
+int timPTLeMaxSList(SList l);
+int timPTChanMaxSlist(SList l);
+int timPTLeMinSList(SList l);
 //Stack
 void createStack_Random(Stack& s, int& n);
 void showStack(Stack& s);
@@ -231,14 +236,34 @@ void thucHienChuongTrinh()
 			cout << "\nPhan tu chan nho nhat trong DSLK: " << timPTChanMinSList(l);
 			break;
 		case 18:
-			_nhapXuatStack(s, n);
+			_nhapXuatDSLK(l, n);
+			cout << "\nPhan tu le lon nhat trong DSLK: " << timPTLeMaxSList(l);
 			break;
 		case 19:
+			_nhapXuatDSLK(l, n);
+			cout << "\nPhan tu chan lon nhat trong DSLK: " << timPTChanMaxSlist(l);
+			break;
+		case 20:
+			_nhapXuatDSLK(l, n);
+			cout << "\nPhan tu le nho nhat trong DSLK: " << timPTLeMinSList(l);
+			break;
+		case 21:
+			break;
+		case 22:
+			break;
+		case 23:
+			break;
+		case 24:
+			break;
+		case 25:
+			_nhapXuatStack(s, n);
+			break;
+		case 26:
 			_nhapXuatStack(s, n);
 			cout << "Top of Stack: ";
 			checkTopStack(s);
 			break;
-		case 20:
+		case 27:
 			char chon_1;
 			_nhapXuatStack(s, n);
 			do
@@ -250,7 +275,7 @@ void thucHienChuongTrinh()
 			} while (chon_1 == 'Y' || chon_1 == 'y');
 			
 			break;
-		case 21:
+		case 28:
 			break;
 		default:
 			system("cls");
@@ -260,7 +285,7 @@ void thucHienChuongTrinh()
 		}
 		cout << endl;
 		system("pause");
-	} while (chon > 0 && chon < 20);
+	} while (chon > 0 && chon < 30);
 }
 //Node
 Node* createNode(Data x)
@@ -372,7 +397,7 @@ void _nhapXuatDSLK(SList& l, int& n)
 	int chon;
 	cout << "Nhap n: ";
 	cin >> n;
-	if (n <= 0)
+	if (n < 0)
 	{
 		cout << "Processing to main Menu..." << endl;
 		Sleep(500);
@@ -853,12 +878,31 @@ int isEmptyEvenSList(SList l)
 	return 0;
 }
 
+int isEmptyOddSList(SList l)
+{
+	Node* p = l.head;
+	int check = 0;
+	while (p)
+	{
+		if (p->info % 2 != 0)
+		{
+			check++;
+		}
+		p = p->next;
+	}
+	if (check == 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+
 int timPTChanMinSList(SList l)
 {
 	Node* p = l.head;
 	int min, dem = 0;
-	//Check non-even num
-	if (isEmptyEvenSList(l) == 1)
+	//Check List
+	if (p == NULL || isEmptyEvenSList(l) == 1)
 	{
 		return -1;
 	}
@@ -872,15 +916,100 @@ int timPTChanMinSList(SList l)
 		}
 		p = p->next;
 	}
-	//Find min-even num
+	//Find min even num
+	while (p)
+	{
+		if (p->info % 2 == 0 && p->info < min)
+		{
+			min = p->info;
+		}
+		p = p->next;
+	}
+	return min;
+}
+
+int timPTLeMaxSList(SList l)
+{
+	int max;
+	Node* p = l.head;
+	//Check
+	if (p == NULL || isEmptyOddSList(l) == 1)
+	{
+		return 0;
+	}
+
+	//Find first odd num
+	while (p)
+	{
+		if (p->info % 2 != 0)
+		{
+			max = p->info;
+			break;
+		}
+		p = p->next;
+	}
+	//Find max odd num
+	while (p)
+	{
+		if (p->info % 2 != 0 && p->info > max)
+		{
+			max = p->info;
+		}
+		p = p->next;
+	}
+	return max;
+}
+
+int timPTChanMaxSlist(SList l)
+{
+	int max;
+	Node* p = l.head;
+	if (p == NULL || isEmptyEvenSList(l) == 1)
+	{
+		return -1;
+	}
 	while (p)
 	{
 		if (p->info % 2 == 0)
 		{
-			if (p->info < min)
-			{
-				min = p->info;
-			}
+			max = p->info;
+			break;
+		}
+		p = p->next;
+	}
+	while (p)
+	{
+		if (p->info % 2  == 0 && p->info > max)
+		{
+			max = p->info;
+		}
+		p = p->next;
+	}
+	return max;
+}
+
+int timPTLeMinSList(SList l)
+{
+	int min;
+	Node* p = l.head;
+	if (p == NULL || isEmptyOddSList(l) == 1)
+	{
+		return 0;
+	}
+	while (p)
+	{
+		if (p->info % 2 != 0)
+		{
+			min = p->info;
+			break;
+		}
+		p = p->next;
+	}
+	while (p)
+	{
+		if (p->info % 2 != 0 || p->info < min)
+		{
+			min = p->info;
 		}
 		p = p->next;
 	}
