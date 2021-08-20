@@ -67,6 +67,9 @@ int timPTLeMaxSList(SList l);
 int timPTChanMaxSlist(SList l);
 int timPTLeMinSList(SList l);
 void xoaPTMaxDSLK(SList& l, int n);
+void xoaPTMinDSLK(SList& l, int n);
+void _XoaCacPTMax_Min(SList l, int n);
+void themPTXCucDai(SList& l);
 //Stack
 void createStack_Random(Stack& s, int& n);
 void showStack(Stack& s);
@@ -250,10 +253,13 @@ void thucHienChuongTrinh()
 			break;
 		case 21:
 			_nhapXuatDSLK(l, n);
-			xoaPTMaxDSLK(l, n);
+			_XoaCacPTMax_Min(l, n);
 			showSList(l);
 			break;
 		case 22:
+			_nhapXuatDSLK(l, n);
+			themPTXCucDai(l);
+			showSList(l);
 			break;
 		case 23:
 			break;
@@ -1055,6 +1061,84 @@ void xoaPTMaxDSLK(SList& l, int n)
 		{
 			p = q->next; //Node can xoa
 			deleteAfterNodeSList(l, q, p);
+		}
+		q = q->next;
+	}
+}
+
+void xoaPTMinDSLK(SList& l, int n)
+{
+	Node* q, * p;
+	int x = timPTMinSList(l);
+	cout << "Phan tu Min: " << x;
+	while (l.head->info == x)
+	{
+		deleteHeadSList(l);
+		if (l.head == NULL)
+		{
+			return;
+		}
+	}
+	while (l.tail->info == x)
+	{
+		deleteTailSList(l);
+		if (l.tail == NULL)
+		{
+			return;
+		}
+	}
+	q = l.head;
+	while (q)
+	{
+		if (q->next == NULL)
+		{
+			return;
+		}
+		if (q->next->info == x)
+		{
+			p = q->next;
+			deleteAfterNodeSList(l, q, p);
+		}
+		q = q->next;
+	}
+}
+void _XoaCacPTMax_Min(SList l, int n)
+{
+	int chon = 0;
+	ShowCur(0);
+	cout << "Vui long chon: ";
+	const char* s[100] = { "1. Xoa PT Max","2. Xoa PT Min" };
+	chon = control(2, 33, 7, s);
+	cout << endl;
+	ShowCur(1);
+	cout << "\n\n";
+	switch (chon)
+	{
+	case 1:
+		xoaPTMaxDSLK(l, n);
+		break;
+	case 2:
+		xoaPTMinDSLK(l, n);
+		break;
+	}
+}
+
+void themPTXCucDai(SList& l)
+{
+	int x;
+	Node* q, * p;
+	nhapx(x);
+	q = l.head;
+	while (q)
+	{
+		if (q->next == NULL)
+		{
+			return;
+		}
+		if (q->info < x && q->next->info < x)
+		{
+			p = createNode(x);
+			addAfterNodeSList(l, q, p);
 		}
 		q = q->next;
 	}
