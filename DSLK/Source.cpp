@@ -70,6 +70,9 @@ void xoaPTMaxDSLK(SList& l, int n);
 void xoaPTMinDSLK(SList& l, int n);
 void _XoaCacPTMax_Min(SList l, int n);
 void themPTXCucDai(SList& l);
+int isAscendingSList(SList l);
+int isDescendingSList(SList l);
+void _KiemTraDSLKTang_Giam(SList& l, int& n);
 //Stack
 void createStack_Random(Stack& s, int& n);
 void showStack(Stack& s);
@@ -106,6 +109,7 @@ void thucHienChuongTrinh()
 		system("cls");
 		cout << "Your choice is: " << chon << endl;
 		ShowCur(1);
+		SetScreenBufferSize(90, 90);
 		switch (chon)
 		{
 		case 1:
@@ -262,6 +266,7 @@ void thucHienChuongTrinh()
 			showSList(l);
 			break;
 		case 23:
+			_KiemTraDSLKTang_Giam(l, n);
 			break;
 		case 24:
 			break;
@@ -1141,6 +1146,80 @@ void themPTXCucDai(SList& l)
 			addAfterNodeSList(l, q, p);
 		}
 		q = q->next;
+	}
+}
+
+int isAscendingSList(SList l)
+{
+	Node* p = l.head;
+	if (isEmptyList(l) == NULL)
+	{
+		return 0;
+	}
+
+	while (p)
+	{
+		if (p->info > p->next->info)
+		{
+			return 0;
+		}
+		p = p->next;
+	}
+
+	return 1;
+}
+int isDescendingSList(SList l)
+{
+	Node* p = l.head;
+	if (isEmptyList(l) == NULL)
+	{
+		return 0;
+	}
+
+	while (p)
+	{
+		if (p->info < p->next->info)
+		{
+			return 0;
+		}
+		p = p->next;
+	}
+
+	return 1;
+}
+void _KiemTraDSLKTang_Giam(SList& l, int &n)
+{
+	int chon = 0;
+	_nhapXuatDSLK(l, n);
+	ShowCur(0);
+	cout << "Vui long chon: ";
+	const char* s[100] = { "1. Kiem tra DSLK tang","2. Kiem tra DSLK giam" };
+	chon = control(2, 33, 7, s);
+	cout << endl;
+	ShowCur(1);
+	cout << "\n\n";
+	switch (chon)
+	{
+	case 1:	
+		if (isAscendingSList(l) == 1)
+		{
+			cout << "\nTRUE" << endl;
+		}
+		else
+		{
+			cout << "\nFALSE" << endl;
+		}
+		break;
+	case 2:
+		if (isDescendingSList(l) == 1)
+		{
+			cout << "\nTRUE" << endl;
+		}
+		else
+		{
+			cout << "\nFALSE" << endl;
+		}
+		break;
 	}
 }
 //================

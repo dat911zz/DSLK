@@ -16,6 +16,7 @@ void SetScreenBufferSize(SHORT width, SHORT height);
 void TestBGColor();
 void WindowsCustomize();
 void DisableResizeWindow();
+COORD GetConsoleCursorPosition(HANDLE hConsoleOutput);
 void ShowCur(bool CursorVisibility);
 void Ruler();
 //int menu();
@@ -127,15 +128,18 @@ int menu_02()
 		"19.Tim phan tu chan lon nhat DSLK",
 		"20.Tim phan tu le nho nhat DSLK",
 		"21.Xoa phan tu Max/Min DSLK",
-		"22.",
-		"23.",
-		"24.",
+		"22.Them phan tu lam sao cho phan tu do cuc dai",
+		"23.Kiem tra DSLK Tang/Giam",
+		"24.<In progress>",
 		"25.Nhap Xuat Stack",
 		"26.Kiem tra top Stack",
-		"27.Them node top Stack" };
+		"27.Them node top Stack",
+		"28.",
+		"29.", 
+		"30."};
 	
 	//-----------------Khu vuc chinh sua tuy chon-----------------//
-	int n = 27;	//So luong control
+	int n = 30;	//So luong control
 	int max_show = 14;	//So luong control trong 1 trang
 	int pick = 1;	//Bien chon : lua chon bat dau tai 1
 	int max_pick = max_show;	//So lua chon duoc hien thi tai trang hien hanh
@@ -716,6 +720,20 @@ void ShowCur(bool CursorVisibility)
 	ConCurInf.bVisible = CursorVisibility;
 
 	SetConsoleCursorInfo(handle, &ConCurInf);
+}
+COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
+{
+	CONSOLE_SCREEN_BUFFER_INFO cbsi;
+	if (GetConsoleScreenBufferInfo(hConsoleOutput, &cbsi))
+	{
+		return cbsi.dwCursorPosition;
+	}
+	else
+	{
+		// The function failed. Call GetLastError() for details.
+		COORD invalid = { 0, 0 };
+		return invalid;
+	}
 }
 void loading()
 {

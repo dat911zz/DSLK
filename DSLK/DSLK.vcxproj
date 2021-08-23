@@ -144,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyLib.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="SList.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
