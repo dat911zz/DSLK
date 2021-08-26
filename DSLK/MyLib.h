@@ -134,7 +134,7 @@ int menu_02()
 		"25.Nhap Xuat Stack",
 		"26.Kiem tra top Stack",
 		"27.Them node top Stack",
-		"28.",
+		"28.Chuyen doi bieu thuc trung to sang hau to",
 		"29.", 
 		"30."};
 	
