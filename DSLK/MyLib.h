@@ -135,7 +135,7 @@ int menu_02()
 		"26.Kiem tra top Stack",
 		"27.Them node top Stack",
 		"28.Chuyen doi bieu thuc trung to sang hau to",
-		"29.", 
+		"29.Tinh toan bieu thuc hau to", 
 		"30."};
 	
 	//-----------------Khu vuc chinh sua tuy chon-----------------//

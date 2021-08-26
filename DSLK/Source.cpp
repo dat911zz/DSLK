@@ -81,6 +81,8 @@ void checkTopStack(Stack s);
 void _ThemVaoDinh(Stack& s);
 int checkPriority(char x);
 void convertInfixToPostfix(Stack& s, char* P, char* Q);
+int calc(char op, int x, int y);
+int calculateInfix(Stack s, char* Q);
 //=====================================
 //Main
 void main()
@@ -297,6 +299,13 @@ void thucHienChuongTrinh()
 			cin >> P;
 			convertInfixToPostfix(s, P, Q);
 			cout << "\nBieu thuc hau to: " << Q << endl;
+			break;
+		case 29:
+			cout << "Nhap bieu thuc trung to: ";
+			cin >> P;
+			convertInfixToPostfix(s, P, Q);
+			cout << "\nBieu thuc hau to: " << Q << endl;
+			cout << "Ket qua: " << calculateInfix(s, Q);
 			break;
 		default:
 			system("cls");
@@ -1406,4 +1415,39 @@ void convertInfixToPostfix(Stack& s, char* P, char* Q)//((6+4)/2+7)/3-(1+2)*2)
 		}
 	}
 	Q[j] = '\0';
+}
+int calc(char op, int x, int y)
+{
+	switch (op)
+	{
+	case '+': return x + y;
+	case '-': return x - y;
+	case '*': return x * y;
+	case '/': return x / y;
+	}
+}
+int calculateInfix(Stack s, char* Q)
+{
+	Node* p;
+	int x, y, result;
+	initStack(s);
+	for (int i = 0; i < strlen(Q); i++)
+	{
+		p = createNode(Q[i] - 48);
+		if (Q[i] >= '0' && Q[i] <= '9')
+		{
+			pushS(s, p);
+		}
+		else
+		{
+			if (Q[i] == '^' || Q[i] == '*' || Q[i] == '/' || Q[i] == '+' || Q[i] == '-')
+			{
+				x = popS(s)->info;
+				y = popS(s)->info;
+				result = calc(Q[i], y, x);
+				pushS(s, p = createNode(result));
+			}
+		}
+	}
+	return popS(s)->info;
 }
