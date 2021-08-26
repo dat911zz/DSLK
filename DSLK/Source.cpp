@@ -1450,4 +1450,5 @@ int calculateInfix(Stack s, char* Q)
 		}
 	}
 	return popS(s)->info;
+
 }
