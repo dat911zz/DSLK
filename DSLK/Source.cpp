@@ -1371,34 +1371,37 @@ int checkPriority(char x)
 	return 1;
 }
 void convertInfixToPostfix(Stack& s, char* P, char* Q)//((6+4)/2+7)/3-(1+2)*2)
-{
+{													  //1*2+3*((4-5)+6)/7
 	Node* p;
 	char tmp;
 	int j = 0;
 	initStack(s);
-	pushS(s, createNode('('));
+	pushS(s, createNode('('));//Them ( vao stack
+	showStack(s);
 	for (int i = 0; i < strlen(P); i++)
 	{
 		p = createNode(P[i]);
-		if (P[i] >= '0' && P[i] <= '9')
+		if (P[i] >= '0' && P[i] <= '9')//Neu P la toan hang
 		{
 			Q[j++] = P[i];
 		}
 		else
 		{
-			if (P[i] == '(')
+			if (P[i] == '(')//Neu P la dau ( thi day vao stack
 			{
 				pushS(s, p);
+				showStack(s);
 			}
 			else
 			{
-				if (P[i] == '^' || P[i] == '*' || P[i] == '/' || P[i] == '+' || P[i] == '-')
+				if (P[i] == '^' || P[i] == '*' || P[i] == '/' || P[i] == '+' || P[i] == '-')//Neu P la toan tu 
 				{
-					while (checkPriority(P[i]) <= checkPriority(s.top->info) && s.top->info != '(')
+					while (checkPriority(P[i]) <= checkPriority(s.top->info) && s.top->info != '(')//Kiem tra do uu tien
 					{
 						Q[j++] = popS(s)->info;
 					}
 					pushS(s, p);
+					showStack(s);
 				}
 				else
 				{
@@ -1406,14 +1409,22 @@ void convertInfixToPostfix(Stack& s, char* P, char* Q)//((6+4)/2+7)/3-(1+2)*2)
 					{
 						while (s.top->info != '(')
 						{
-							Q[j++] = popS(s)->info;;
+							Q[j++] = popS(s)->info;
+							showStack(s);
 						}
 						popS(s);
+						showStack(s);
 					}
 				}
 			}
 		}
 	}
+	while (s.top->info != '(')
+	{
+		Q[j++] = popS(s)->info;
+		showStack(s);
+	}
+	showStack(s);
 	Q[j] = '\0';
 }
 int calc(char op, int x, int y)
