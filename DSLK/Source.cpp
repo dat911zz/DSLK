@@ -1372,7 +1372,7 @@ int checkPriority(char x)
 }
 void convertInfixToPostfix(Stack& s, char* P, char* Q)//((6+4)/2+7)/3-(1+2)*2)
 {													  //1*2+3*((4-5)+6)/7
-	Node* p;
+	Node* p;										  //3*(2+6*2/3–1)–2*3/2+1
 	char tmp;
 	int j = 0;
 	initStack(s);
@@ -1461,5 +1461,4 @@ int calculateInfix(Stack s, char* Q)
 		}
 	}
 	return popS(s)->info;
-
 }
