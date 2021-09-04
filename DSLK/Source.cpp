@@ -465,12 +465,6 @@ void showSList(SList l)
 	{
 		cout << "\t  <Empty!>" << endl;
 	}
-	//while (p)
-	//{
-	//	cout << "\t  Node " << i++ << ": " << p->info << endl;
-	//	p = p->next;
-	//}
-	//p = l.head;
 	while (p)
 	{
 		cout << "[" << p->info << "]-> ";
