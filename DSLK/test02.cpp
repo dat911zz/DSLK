@@ -14,8 +14,6 @@
 //{
 //	Node* top;
 //};
-//
-//
 //Node* Create_node(int x);
 //void Create_stack(Stack& s);
 //void Push(Stack& s, Node* p);
@@ -26,8 +24,6 @@
 //void Input_stack(Stack& s);
 //int Priority(char x);
 //void Add_last_string(char str[], char a);
-//
-//
 //void main()
 //{
 //	Stack P, Q;
@@ -42,31 +38,31 @@
 //	printf("Nhap chuoi: ");
 //	scanf("%s", &str);
 //
-//	// Thêm '(' ? ??u str và ')' ? top.
-//	//=> ?? lúc nhâp không c?n nh?p 2 d?u ho?c phía ngoài.
+//	// ThÃªm '(' ? ??u str vÃ  ')' ? top.
+//	//=> ?? lÃºc nhÃ¢p khÃ´ng c?n nh?p 2 d?u ho?c phÃ­a ngoÃ i.
 //	Add_last_string(str, ')');
 //	Push(P, temp = Create_node('('));
 //	int i = 0;
 //	while (i < strlen(str)) //Dk: ch?a ?i h?t bi?u th?c.
 //	{
-//		temp = Create_node(str[i]);// T?o m?t node có info = str[i].
-//		if (str[i] >= 48 && str[i] <= 57)//Dk: kí t? là s?
+//		temp = Create_node(str[i]);// T?o m?t node cÃ³ info = str[i].
+//		if (str[i] >= 48 && str[i] <= 57)//Dk: kÃ­ t? lÃ  s?
 //		{
 //			Push(Q, temp);// L?y top str[i] qua top P.
 //		}
-//		else if (str[i] == '(')// Dk: kí t? là d?u '('.
+//		else if (str[i] == '(')// Dk: kÃ­ t? lÃ  d?u '('.
 //			Push(P, temp); // L?y str[i] qua P.
-//		else if (str[i] == 42 || str[i] == 47 || str[i] == 43 || str[i] == 45)// Dk:kí t? thu?c '+', '-', '*', '/'.
+//		else if (str[i] == 42 || str[i] == 47 || str[i] == 43 || str[i] == 45)// Dk:kÃ­ t? thu?c '+', '-', '*', '/'.
 //		{
-//			while (Priority(str[i]) <= Priority(P.top->info) && P.top->info != '(') // So sánh ?? ?u tiên c?a toán t? và không l?y tr??ng h?p P.top = '('.
+//			while (Priority(str[i]) <= Priority(P.top->info) && P.top->info != '(') // So sÃ¡nh ?? ?u tiÃªn c?a toÃ¡n t? vÃ  khÃ´ng l?y tr??ng h?p P.top = '('.
 //				Push(Q, Pop(P));// L?y top P qua top Q.
-//			Push(P, temp); // Lây top str[i] qua top P.
+//			Push(P, temp); // LÃ¢y top str[i] qua top P.
 //		}
-//		else if (str[i] == ')')// Dk: kí t? là d?u ')'.
+//		else if (str[i] == ')')// Dk: kÃ­ t? lÃ  d?u ')'.
 //		{
 //			while (P.top->info != '(')// L?y ??n khi g?p d?u '('.
 //				Push(Q, Pop(P));
-//			Pop(P); // Xóa '(' kh?i P và ko l?y ')' t? chu?i.
+//			Pop(P); // XÃ³a '(' kh?i P vÃ  ko l?y ')' t? chu?i.
 //		}
 //		else
 //		{
@@ -91,13 +87,13 @@
 //	p->next = NULL;
 //}
 //
-////Taao stack.
+////Tao stack.
 //void Create_stack(Stack& s)
 //{
 //	s.top = NULL;
 //}
 //
-////Thêm vào ??u (top).
+////ThÃªm vÃ o ??u (top).
 //void Push(Stack& s, Node* p)
 //{
 //	if (s.top == NULL)
@@ -138,7 +134,7 @@
 //	}
 //}
 //
-////Xuát Stack ng??c.
+////XuÃ¡t Stack ng??c.
 //void DePrint_stack(Stack s)
 //{
 //	Stack temp;
@@ -162,7 +158,7 @@
 //	}
 //}
 //
-//// ?? ?u tiên.
+//// ?? ?u tiÃªn.
 //int Priority(char x)
 //{
 //	if (x == '(')
@@ -173,7 +169,7 @@
 //		return 1;
 //}
 //
-//// Thêm kí t? vào cu?i chu?i.
+//// ThÃªm kÃ­ t? vÃ o cu?i chu?i.
 //void Add_last_string(char str[], char a)
 //{
 //	int temp = strlen(str);
